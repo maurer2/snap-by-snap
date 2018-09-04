@@ -1,0 +1,75 @@
+:root {
+  --primary: #3c3c3c;
+  --secondary: #fff;
+  --tetiary: #c3c3c3;
+  --debug: red;
+}
+
+// Base
+body,
+html {
+  background: var(--primary);
+  height: 100%;
+}
+
+.wrapper {
+  margin: auto;
+  max-width: 1096px;
+  background: var(--tetiary);
+}
+
+
+.header {
+  overflow: hidden; // contain child margins
+}
+
+.main {}
+
+.slide-wrapper {
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+  background: var(--primary);
+  counter-reset: slide;
+
+  @supports(scroll-snap-type: x mandatory) {
+    scroll-snap-type: x mandatory;
+  }
+}
+
+.slide {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  counter-increment: slide;
+
+  scroll-snap-align: center;
+
+  // debug stuff
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 1px);
+    width: 2px;
+    background: var(--debug);
+  }
+}
+
+.image {
+  display: block;
+}
+
+.caption {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 5%;
+  background: var(--secondary);
+  text-align: center;
+
+  &:after{
+    content: counter(slide);
+  }
+}
