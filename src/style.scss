@@ -1,7 +1,7 @@
 :root {
   --primary: #3c3c3c;
   --secondary: #fff;
-  --tetiary: #c3c3c3;
+  --tertiary: #c3c3c3;
   --debug: red;
 }
 
@@ -9,67 +9,77 @@
 body,
 html {
   background: var(--primary);
-  height: 100%;
 }
 
 .wrapper {
   margin: auto;
-  max-width: 1096px;
-  background: var(--tetiary);
+  max-width: 768px;
+  background: var(--tertiary);
 }
 
+.snap-gallery {}
+  .header {
+    overflow: hidden; // contain child margins
+  }
 
-.header {
-  overflow: hidden; // contain child margins
-}
+  .main {}
 
-.main {}
-
-.slide-wrapper {
+.slider {
   display: flex;
-  align-items: center;
   overflow-x: scroll;
-  background: var(--primary);
+  -webkit-overflow-scrolling: touch;
   counter-reset: slide;
+  background: var(--primary);
 
-  @supports(scroll-snap-type: x mandatory) {
+  @supports(scroll-snap-type: x mandatory) and (scroll-snap-align: center) {
     scroll-snap-type: x mandatory;
   }
 }
 
-.slide {
-  position: relative;
-  margin: 0;
-  width: 100%;
-  counter-increment: slide;
-
-  scroll-snap-align: center;
-
-  // debug stuff
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: calc(50% - 1px);
-    width: 2px;
+  .slide {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    flex-basis: 100%; // needed for image percentage
+    flex-grow: 0;
+    flex-shrink: 0;
+    counter-increment: slide;
     background: var(--debug);
+
+    @supports(scroll-snap-type: x mandatory) and (scroll-snap-align: center) {
+      scroll-snap-align: center;
+    }
+
+    // debug stuff
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: calc(50% - 1px);
+      width: 2px;
+      background: var(--debug);
+    }
   }
-}
 
-.image {
-  display: block;
-}
+    .image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
 
-.caption {
-  position: absolute;
-  left: 5%;
-  right: 5%;
-  bottom: 5%;
-  background: var(--secondary);
-  text-align: center;
+    .caption {
+      position: absolute;
+      left: 5%;
+      right: 5%;
+      bottom: 5%;
+      text-align: center;
 
-  &:after{
-    content: counter(slide);
-  }
+      background: var(--secondary);
+
+      &:after{
+        content: counter(slide);
+      }
 }

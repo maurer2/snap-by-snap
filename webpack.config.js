@@ -12,6 +12,7 @@ module.exports = {
   module: {
     rules: [
       // Babel
+      /*
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
@@ -22,6 +23,7 @@ module.exports = {
           },
         },
       },
+      */
       // SCSS
       {
         test: /\.scss$/,
@@ -49,7 +51,6 @@ module.exports = {
     extensions: ['*', '.js', '.css', '.scss'],
   },
   plugins: [
-    // Sticky
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/index.html',

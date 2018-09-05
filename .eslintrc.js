@@ -15,14 +15,5 @@ module.exports = {
     },
     settings: {
         'import/resolver': 'webpack'
-    }
-    /*
-    "settings": {
-        "import/resolver": {
-            "alias": [
-                ["@app", path.resolve(__dirname, 'src/')]
-            ]
-        }
-    }
-    */
+    },
 };
