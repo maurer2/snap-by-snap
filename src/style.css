@@ -5,7 +5,6 @@
   --debug: red;
 }
 
-// Base
 body,
 html {
   background: var(--primary);
@@ -19,7 +18,7 @@ html {
 
 .snap-gallery {}
   .header {
-    overflow: hidden; // contain child margins
+    overflow: hidden;
   }
 
   .main {}
@@ -30,8 +29,10 @@ html {
   -webkit-overflow-scrolling: touch;
   counter-reset: slide;
   background: var(--primary);
+}
 
-  @supports(scroll-snap-type: x mandatory) and (scroll-snap-align: center) {
+@supports(scroll-snap-type: x mandatory) and (scroll-snap-align: center) {
+  .slider {
     scroll-snap-type: x mandatory;
   }
 }
@@ -40,27 +41,28 @@ html {
     position: relative;
     margin: 0;
     width: 100%;
-    flex-basis: 100%; // needed for image percentage
+    flex-basis: 100%;
     flex-grow: 0;
     flex-shrink: 0;
     counter-increment: slide;
     background: var(--debug);
+  }
 
-    @supports(scroll-snap-type: x mandatory) and (scroll-snap-align: center) {
+  @supports(scroll-snap-type: x mandatory) and (scroll-snap-align: center) {
+    .slide {
       scroll-snap-align: center;
     }
-
-    // debug stuff
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: calc(50% - 1px);
-      width: 2px;
-      background: var(--debug);
-    }
   }
+
+  .slide:after {
+     content: '';
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     left: calc(50% - 1px);
+     width: 2px;
+     background: var(--debug);
+   }
 
     .image {
       display: block;
@@ -76,10 +78,9 @@ html {
       right: 5%;
       bottom: 5%;
       text-align: center;
-
       background: var(--secondary);
+    }
 
-      &:after{
-        content: counter(slide);
-      }
-}
+    .caption:after{
+      content: counter(slide);
+    }
