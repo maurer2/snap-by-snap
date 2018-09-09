@@ -2,15 +2,19 @@
 <html class="no-js" lang="">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Snap by Snap</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
-<body class="wrapper">
-    <article class="snap-gallery">
+<body>
+    <article class="gallery gallery-native-snap">
         <header class="header">
-            <h1>Gallery with native snap points</h1>
+            <h2 class="title">
+                Gallery with native snap points and modern specs
+            </h2>
+            <p class="tagline">
+                Chrome only
+            </p>
         </header>
         <section class="main">
             <div class="slider">
@@ -34,12 +38,51 @@
                 </figure>
             </div>
         </section>
+        <aside class="overlay overlay--is-hidden">
+            <img data-src="assets/cat-no.jpeg" class="image" alt="cat overlay">
+            <p class="description">
+                Not supported
+            </p>
+        </aside>
     </article>
 
-    <article class="snap-gallery--fallback">
-        <header>
-            <h1>New gallery with emulated snap points via css transforms</h1>
+    <article class="gallery gallery-fallback">
+        <header class="header">
+            <h2 class="title">
+                Gallery with emulated snap points via css transforms and pointer events
+            </h2>
+            <p class="tagline">
+                No support in Safari due to lack of pointer events
+            </p>
         </header>
+        <section class="main">
+            <div class="slider">
+                <figure class="slide">
+                    <img src="assets/cat-01.jpg" class="image" alt="cat">
+                    <figcaption class="caption">
+                        Slide
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="assets/cat-02.jpg" class="image" alt="cat">
+                    <figcaption class="caption">
+                        Slide
+                    </figcaption>
+                </figure>
+                <figure class="slide">
+                    <img src="assets/cat-03.jpg" class="image" alt="cat">
+                    <figcaption class="caption">
+                        Slide
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+        <aside class="overlay overlay--is-hidden">
+            <img data-src="assets/cat-no.jpeg" class="image" alt="cat overlay">
+            <p class="description">
+                tod do
+            </p>
+        </aside>
     </article>
 </body>
 </html>

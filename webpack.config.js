@@ -28,7 +28,12 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
+          {
+            loader: 'style-loader',
+            options: {
+              sourceMap: true,
+            }
+          },
           'css-loader',
           'sass-loader',
         ],
@@ -40,6 +45,17 @@ module.exports = {
               'style-loader',
               'css-loader',
           ],
+      },
+      // Fonts
+      {
+          test: /\.(woff|woff2)$/,
+          use: {
+              loader: 'file-loader',
+              options: {
+                  name: '[name].[ext]',
+                  outputPath: './assets/'
+              },
+          },
       },
     ],
   },
@@ -59,7 +75,7 @@ module.exports = {
     // Copy assets
     new CopyWebpackPlugin([
         {
-          from: 'src/assets/*.jpg',
+          from: 'src/assets/*',
           to: 'assets/',
           flatten: true,
         },

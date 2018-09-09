@@ -2,84 +2,19 @@
   --primary: #3c3c3c;
   --secondary: #fff;
   --tertiary: #c3c3c3;
+
+  --spacing: 1rem;
+
+  --font-size: 1rem;
+
   --debug: red;
 }
 
-// Base
-body,
-html {
-  background: var(--primary);
+@font-face {
+  font-family: 'Comic Sans MS';
+  src: url('assets/comic-sans.woff');
 }
 
-.wrapper {
-  margin: auto;
-  max-width: 768px;
-  background: var(--tertiary);
-}
-
-.snap-gallery {}
-  .header {
-    overflow: hidden; // contain child margins
-  }
-
-  .main {}
-
-.slider {
-  display: flex;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
-  counter-reset: slide;
-  background: var(--primary);
-
-  @supports(scroll-snap-type: x mandatory) and (scroll-snap-align: center) {
-    scroll-snap-type: x mandatory;
-  }
-}
-
-  .slide {
-    position: relative;
-    margin: 0;
-    width: 100%;
-    flex-basis: 100%; // needed for image percentage
-    flex-grow: 0;
-    flex-shrink: 0;
-    counter-increment: slide;
-    background: var(--debug);
-
-    @supports(scroll-snap-type: x mandatory) and (scroll-snap-align: center) {
-      scroll-snap-align: center;
-    }
-
-    // debug stuff
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: calc(50% - 1px);
-      width: 2px;
-      background: var(--debug);
-    }
-  }
-
-    .image {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .caption {
-      position: absolute;
-      left: 5%;
-      right: 5%;
-      bottom: 5%;
-      text-align: center;
-
-      background: var(--secondary);
-
-      &:after{
-        content: counter(slide);
-      }
-}
+@import './styles/global';
+@import './styles/gallery';
+@import './styles/slider';

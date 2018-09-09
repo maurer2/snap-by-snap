@@ -1,0 +1,41 @@
+.gallery {
+  position: relative;
+  margin: var(--spacing) auto;
+  max-width: 768px;
+  background: var(--tertiary);
+}
+
+.header {
+  margin: 0;
+  overflow: hidden; // contain child margins
+  text-align: center;
+}
+
+  .title {}
+
+  .tagline {}
+
+.main {}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing);
+  background: var(--secondary);
+
+  &--is-hidden {
+    display: none;
+  }
+}
+
+  .description {
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+    padding: var(--spacing);
+    transform: translateX(-50%);
+    background: inherit;
+  }
