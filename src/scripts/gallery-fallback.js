@@ -1,6 +1,8 @@
-export default class GalleryFallback {
+import Gallery from '~/scripts/gallery';
+
+export default class GalleryFallback extends Gallery {
     constructor(domElement) {
-        this.domelement = domElement;
+        super(domElement);
     }
 
     showOverlay() {
