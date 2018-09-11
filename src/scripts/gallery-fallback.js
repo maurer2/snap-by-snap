@@ -5,29 +5,38 @@ export default class GalleryFallback extends Gallery {
         super(domElement);
 
         this.slider = this.domelement.querySelector('.slider');
+        this.buttons = Array.from(domElement.querySelectorAll('.navigation .button'));
         this.slides = Array.from(this.domelement.querySelectorAll('.slide'));
     }
 
     init() {
-        this.registerEvents();
+        this.registerSlideVisibilityChangeListener();
     }
 
-    registerEvents() {
-        // add intersction observer for nav buttons
-        this.slideObserver = new IntersectionObserver((entries) => {
-            const visible = entries.filter((entry) => entry.intersectionRatio > 0);
-            const hidden = entries.filter((entry) => entry.intersectionRatio === 0);
+    registerSlideVisibilityChangeListener() {
+        if ('IntersectionObserver' in window && 'IntersectionObserverEntry' in window) {
+            const threshold = 0.5;
 
-            console.log('visible', visible);
-            console.log('hidden', hidden);
-        }, {
-            root: this.slider,
-            rootMargin: '0px',
-            threshold: 0,
-        });
+            this.slideObserver = new IntersectionObserver((entries) => {
+                const visibleElement = entries.filter((entry) => entry.intersectionRatio >= threshold);
 
-        this.slides.forEach((slide) => {
-            this.slideObserver.observe(slide);
-        })
+                if (visibleElement.length === 1) {
+                    const index = this.slides.findIndex((slide) => slide === visibleElement[0].target);
+
+                    this.buttons.forEach((button) => button.classList.remove('button--is-active'));
+                    this.buttons[index].classList.add('button--is-active');
+                }
+            }, {
+                root: this.slider,
+                rootMargin: '0%',
+                threshold: threshold,
+            });
+
+            this.slides.forEach((slide) => {
+                this.slideObserver.observe(slide);
+            })
+        } else {
+            // offset calculation
+        }
     }
 }
