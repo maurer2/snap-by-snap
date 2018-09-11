@@ -18,4 +18,4 @@ nativeGallery.init();
 
 // Fallback gallery
 const fallbackGallery = new GalleryFallback(document.querySelector('.gallery-fallback'));
-fallbackGallery.showOverlay();
+fallbackGallery.init()

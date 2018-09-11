@@ -6,8 +6,10 @@
   counter-reset: slide;
   background: var(--primary);
 
-  @supports(scroll-snap-type: x mandatory) and (scroll-snap-align: center) {
-    scroll-snap-type: x mandatory;
+  .gallery-native-snap & {
+    @supports(scroll-snap-type: x mandatory) and (scroll-snap-align: center) {
+      scroll-snap-type: x mandatory;
+    }
   }
 }
 
@@ -21,11 +23,13 @@
   counter-increment: slide;
   background: var(--debug);
 
-  @supports(scroll-snap-type: x mandatory) and (scroll-snap-align: center) {
-    scroll-snap-align: center;
+  .gallery-native-snap & {
+    @supports (scroll-snap-type: x mandatory) and (scroll-snap-align: center) {
+      scroll-snap-align: center;
+    }
   }
 
-  // debug stuff
+  // debug
   &:after {
     content: '';
     position: absolute;
