@@ -26,6 +26,7 @@
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "html5-boilerplate": "^6.1.0",
+    "lodash": "^4.17.11",
     "mini-css-extract-plugin": "^0.4.2",
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",
@@ -33,14 +34,16 @@
     "stylelint": "^9.5.0",
     "stylelint-config-recommended": "^2.1.0",
     "webpack": "^4.17.1",
+    "webpack-bundle-analyzer": "^3.0.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.7"
   },
   "scripts": {
     "compile": "webpack --progress",
     "run": "webpack-dev-server --config webpack.config.js --hot",
-    "run-cold": "webpack-dev-server --config webpack.config.js",
-    "lint-js": "node node_modules/.bin/eslint ./src",
-    "lint-css": "node node_modules/.bin/stylelint ./src/**/*.scss"
+    "run:cold": "webpack-dev-server --config webpack.config.js",
+    "lint:js": "node node_modules/.bin/eslint ./src",
+    "lint:css": "node node_modules/.bin/stylelint ./src/**/*.scss",
+    "analyze": "webpack --profile --json > webpackstats.json"
   }
 }

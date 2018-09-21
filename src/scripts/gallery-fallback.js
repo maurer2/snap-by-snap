@@ -1,4 +1,5 @@
 import Gallery from '~/scripts/gallery';
+import _throttle from 'lodash/throttle';
 
 export default class GalleryFallback extends Gallery {
     constructor(domElement) {
@@ -13,26 +14,24 @@ export default class GalleryFallback extends Gallery {
         if ('IntersectionObserver2' in window && 'IntersectionObserverEntry' in window) {
             this.registerSlideVisibilityChangeListener();
         } else {
-            this.registerSlideVisibilityFallbackListener()
+            this.slider.addEventListener('scroll', _throttle(this.onScrollEvent.bind(this), 500));
         }
     }
 
-    registerSlideVisibilityFallbackListener() {
+    onScrollEvent() {
         // only works for equal wide elements
-        const totalScrollWidth= this.slider.scrollWidth;
+        const totalScrollWidth = this.slider.scrollWidth;
         const numberElements = this.slides.length;
         const slideWidth = totalScrollWidth / numberElements;
         const threshold = 0.5;
 
-        this.slider.addEventListener('scroll', () => {
-            const scrollPosition = this.slider.scrollLeft;
-            const slideCalculated = scrollPosition / slideWidth;
-            const decimalPoints = slideCalculated - Math.floor(slideCalculated);
-            const index = (decimalPoints >= threshold) ? slideCalculated + 1 : slideCalculated;
+        const scrollPosition = this.slider.scrollLeft;
+        const slideCalculated = scrollPosition / slideWidth;
+        const decimalPoints = slideCalculated - Math.floor(slideCalculated);
+        const index = (decimalPoints >= threshold) ? slideCalculated + 1 : slideCalculated;
 
-            this.buttons.forEach((button) => button.classList.remove('button--is-active'));
-            this.buttons[Math.floor(index)].classList.add('button--is-active');
-        })
+        this.buttons.forEach((button) => button.classList.remove('button--is-active'));
+        this.buttons[Math.floor(index)].classList.add('button--is-active');
     }
 
     registerSlideVisibilityChangeListener() {
